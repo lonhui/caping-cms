@@ -1,0 +1,244 @@
+<template>
+  <div class="app-container">
+    <div class="filter-container">
+      <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="el-icon-edit">{{$t('button.add')}}</el-button>
+    </div>
+
+    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
+      style="width: 100%">
+      <!-- <el-table-column align="center" :label="$t('table.id')" width="65">
+        <template slot-scope="scope">
+          <span>{{scope.row.id}}</span>
+        </template>
+      </el-table-column> -->
+      <el-table-column width="200px" align="center" :label="$t('table.key')">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.config_key}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="200px" align="center" :label="$t('table.value')">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.config_value}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column min-width="150px" :label="$t('table.comment')">
+        <template slot-scope="scope">
+          <span>{{scope.row.config_comment}}</span>
+          <!-- <el-tag>{{scope.row.type | typeFilter}}</el-tag> -->
+        </template>
+      </el-table-column>
+      <el-table-column class-name="status-col" :label="$t('table.status')" width="100">
+        <template slot-scope="scope">
+          <el-tag :type="scope.row.status | statusFilter">{{$t(`table.status${scope.row.status}`)}}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" :label="$t('table.actions')" width="200" class-name="small-padding fixed-width">
+        <template slot-scope="scope">
+          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{$t('button.edit')}}</el-button>
+          <el-button size="mini" type="danger" @click="handleModifyStatus(scope.row,0)">{{$t('button.delete')}}
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <div class="pagination-container">
+      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="listData.pageNo" :page-sizes="[10,20,30, 50]" :page-size="listData.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+      </el-pagination>
+    </div>
+
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" v-loading="dialogLoading" element-loading-text="Loading">
+      <el-form :rules="rules" ref="dataForm" :model="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+        <el-form-item :label="$t('table.key')" prop="config_key">
+          <el-input v-model="temp.config_key"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('table.value')" prop="config_value">
+          <el-input v-model="temp.config_value"></el-input>
+        </el-form-item>
+        <el-form-item v-if="dialogStatus == 'update'" :label="$t('table.status')">
+          <el-select class="filter-item" v-model="temp.status" placeholder="Please select">
+            <el-option v-for="item in statusOptions" :key="item" :label="$t('table.status' + item)" :value="item">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item :label="$t('table.comment')">
+          <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" :placeholder="$t('table.pleaseInput')" v-model="temp.config_comment">
+          </el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">{{$t('button.cancel')}}</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">{{$t('button.confirm')}}</el-button>
+        <el-button v-else type="primary" @click="updateData">{{$t('button.confirm')}}</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+import { fetchList, create, update } from '@/api/config'
+import { deepCopy } from '@/utils'
+
+export default {
+  data() {
+    return {
+      tableKey: 0,
+      list: null,
+      total: null,
+      listLoading: true,
+      dialogLoading: false,
+      listData: {
+        pageNo: 1,
+        pageSize: 20
+      },
+      statusOptions: [0, 1],
+      temp: {
+        id: undefined,
+        app_id: undefined,
+        config_key: '',
+        config_value: '',
+        config_comment: '',
+        status: 1
+      },
+      bakTemp: {},
+      dialogFormVisible: false,
+      dialogStatus: '',
+      textMap: {
+        update: this.$t('button.edit'),
+        create: this.$t('button.add')
+      },
+      rules: {
+        config_key: [{ required: true, message: this.$t('message.keyRequired'), trigger: 'change' }],
+        config_value: [
+          { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
+        ]
+      }
+    }
+  },
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        // 0 无效， 1 有效
+        1: 'success',
+        0: 'danger'
+      }
+      return statusMap[status]
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    // 拉取所有系统通用配置
+    async getList() {
+      this.listLoading = true
+      try {
+        const response = await fetchList(this.listData)
+        this.list = response.data.configList
+        this.total = response.data.totalCount
+        this.listLoading = false
+      } catch (error) {
+        console.error(error)
+        this.listLoading = false
+      }
+    },
+    resetTemp() {
+      this.temp = {
+        id: undefined,
+        app_id: undefined,
+        config_key: '',
+        config_value: '',
+        config_comment: '',
+        status: 1
+      }
+    },
+    handleCreate() {
+      this.resetTemp()
+      this.dialogStatus = 'create'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    // 创建通用配置
+    createData() {
+      this.$refs['dataForm'].validate(async valid => {
+        if (valid) {
+          try {
+            this.dialogLoading = true
+            await create(this.temp)
+            this.dialogLoading = false
+            this.$notify({
+              title: this.$t('message.succ'),
+              message: this.$t('message.createSucc'),
+              type: 'success',
+              duration: 2000
+            })
+            this.dialogFormVisible = false
+            this.getList()
+          } catch (error) {
+            console.error(error)
+            this.dialogLoading = false
+          }
+        }
+      })
+    },
+    handleUpdate(row) {
+      this.temp = Object.assign({}, row) // copy obj
+      this.bakTemp = deepCopy(this.temp)
+      this.dialogStatus = 'update'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    // 更新通用配置
+    updateData() {
+      this.$refs['dataForm'].validate(async valid => {
+        if (valid && JSON.stringify(this.temp) !== JSON.stringify(this.bakTemp)) {
+          try {
+            this.dialogLoading = true
+            await update(this.temp)
+            this.dialogLoading = false
+            this.$notify({
+              title: this.$t('message.succ'),
+              message: this.$t('message.updateSucc'),
+              type: 'success',
+              duration: 2000
+            })
+            this.dialogFormVisible = false
+            this.getList()
+          } catch (error) {
+            console.error(error)
+            this.dialogLoading = false
+          }
+        }
+      })
+    },
+    // 删除通用配置，目前是通过修改状态来逻辑删除
+    async handleModifyStatus(row, status) {
+      try {
+        if (row.status === status) return
+        this.listLoading = true
+        row.status = status
+        await update(row)
+        this.listLoading = false
+        this.$message({
+          message: this.$t('message.changeStatusSucc'),
+          type: 'success'
+        })
+      } catch (error) {
+        console.error(error)
+        this.listLoading = false
+      }
+    },
+    handleCurrentChange(val) {
+      this.listData.pageNo = val
+      this.getList()
+    },
+    handleSizeChange(val) {
+      this.listData.pageSize = val
+      this.getList()
+    }
+  }
+}
+</script>
