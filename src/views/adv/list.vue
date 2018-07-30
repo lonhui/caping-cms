@@ -28,6 +28,7 @@
           <span>{{scope.row.title}}</span>
         </template>
       </el-table-column>
+      <!-- 说明 -->
       <el-table-column style="max-width: 180px;min-width: 130px;" align="center" :label="$t('table.desc')">
         <template slot-scope="scope">
           <span>{{scope.row.description}}</span>
@@ -57,6 +58,7 @@
           </el-button>
           <el-button v-if="scope.row.status!=-1" size="mini" type="danger" @click="handleModifyStatus(scope.row,-1)">{{$t('button.delete')}}
           </el-button>
+          <a @click="rise(scope.row)"><svg-icon  class-name="arrow_icon" icon-class="Arrow_up" /></a>
         </template>
       </el-table-column>
     </el-table>
@@ -125,6 +127,14 @@
             })
           }
           this.list = response.data.ads
+          for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].description.length > 40) {
+              this.list[i].description = this.list[i].description.substring(0,20) + '……'
+            }
+            if(this.list[i].title.length > 40){
+              this.list[i].title = this.list[i].title.substring(0,20) + '……'
+            }
+          }
           this.total = response.data.totalCount
           this.listLoading = false
         } catch (error) {
@@ -177,12 +187,29 @@
       handleUpdate(row) {
         this.$store.dispatch('setAdv', row)
         this.$router.push('editAdv')
+      },
+      rise(row) {
+        row.sort = row.sort + 1
+        this.$axios.post('/adv/update',{
+            id: row.id,
+            sort: row.sort 
+          },
+          {
+            'header': {'Content-Type': 'application/json'}
+          }
+        ).then(function(res){
+          console.log(res)
+        },function(error){
+          console.log(error)
+        })
       }
     }
   }
 </script>
 
 <style scoped>
-
+.arrow_icon{
+  font-size: 20px;
+}
 </style>
 
