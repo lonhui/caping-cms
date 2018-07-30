@@ -1,4 +1,5 @@
 <template>
+  <!-- 广告编辑页面 -->
   <div class="app-container" style="width: 745px; margin-top: 40px;">
     <el-form :rules="rules" ref="dataForm" :model="newAdv" label-width="150px">
       <div>
@@ -26,7 +27,7 @@
       <el-form-item :label="$t('table.desc')" prop="description">
         <el-input v-model="newAdv.description" style="width: 555px"></el-input>
       </el-form-item>
-      <el-form-item :label="$t('table.picture')">
+      <el-form-item :label="$t('table.picture')" prop='uploadImage'>
         <el-upload
           class="avatar-uploader"
           name="imageData"
@@ -69,7 +70,11 @@
           <el-input v-model="newAdv.ios_sheme_uri" style="width: 555px"></el-input>
         </el-form-item>
       </div>
-      <el-form-item :label="$t('table.content')" prop="content">
+      <!-- 内容 -->
+      <el-form-item :label="$t('table.content')">
+        <el-input v-model="newAdv.content" style="width: 555px"></el-input>
+      </el-form-item>
+      <!-- <el-form-item :label="$t('table.content')" prop="content">
         <quill-editor v-model="newAdv.content"
                       ref="myQuillEditor"
                       :options="editorOption"
@@ -77,7 +82,7 @@
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)">
         </quill-editor>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button  type="primary" @click="publish()">Publish</el-button>
         <el-button  type="primary" @click="preview()">Preview</el-button>
@@ -157,20 +162,22 @@
         },
         iconUploading: false,
         imgUrl: '',
+        // 通过prop设置必填字段
         rules: {
-          title: [{ required: true, message: this.$t('message.valueRequired'), trigger: 'change' }],
-          description: [
-            { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
-          ],
-          keyword: [
-            { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
-          ],
-          expire_time: [
-            { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
-          ],
-          content: [
-            { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
-          ]
+          uploadImage:[{required: true, message: this.$t('message.valueRequired'),trigger: 'change'}]
+          // stitle: [{ required: true, message: this.$t('message.valueRequired'), trigger: 'change' }],
+          // description: [
+          //   { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
+          // ],
+          // keyword: [
+          //   { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
+          // ],
+          // expire_time: [
+          //   { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
+          // ],
+          // content: [
+          //   { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
+          // ]
         },
         active: '',
         // 图片上传
