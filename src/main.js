@@ -23,6 +23,10 @@ import '@/permission' // permission control
 // import '@/mock' // simulation data
 import VueQuillEditor from 'vue-quill-editor'
 
+import axios from 'axios'
+
+Vue.prototype.$axios = axios
+
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
