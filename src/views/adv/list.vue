@@ -199,6 +199,7 @@
           }
         ).then(function(res){
           console.log(res)
+          this.getList()
         },function(error){
           console.log(error)
         })
