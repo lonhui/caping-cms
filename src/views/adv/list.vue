@@ -129,10 +129,10 @@
           this.list = response.data.ads
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].description.length > 40) {
-              this.list[i].description = this.list[i].description.substring(0,20) + '……'
+              this.list[i].description = this.list[i].description.substring(0, 20) + '……'
             }
-            if(this.list[i].title.length > 40){
-              this.list[i].title = this.list[i].title.substring(0,20) + '……'
+            if (this.list[i].title.length > 40) {
+              this.list[i].title = this.list[i].title.substring(0, 20) + '……'
             }
           }
           this.total = response.data.totalCount
@@ -190,17 +190,17 @@
       },
       rise(row) {
         row.sort = row.sort + 1
-        this.$axios.post('/adv/update',{
-            id: row.id,
-            sort: row.sort 
-          },
-          {
-            'header': {'Content-Type': 'application/json'}
-          }
-        ).then(function(res){
+        this.$axios.post('/adv/update', {
+          id: row.id,
+          sort: row.sort
+        },
+        {
+          'header': { 'Content-Type': 'application/json' }
+        }
+        ).then(function(res) {
           console.log(res)
           this.getList()
-        },function(error){
+        }, function(error) {
           console.log(error)
         })
       }
