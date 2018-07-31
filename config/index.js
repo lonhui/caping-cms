@@ -12,7 +12,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/adv': {
-        target: 'http://127.0.0.1:3446',
+        //http://127.0.0.1:3446
+        //http://cms.caping.co.id
+        //http://196.168.1.186:3446
+        target: '/http://127.0.0.1:3446',
         changeOrigin: true
       },
       '/app': {

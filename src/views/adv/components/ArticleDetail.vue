@@ -27,7 +27,7 @@
       <el-form-item :label="$t('table.desc')" prop="description">
         <el-input v-model="newAdv.description" style="width: 555px"></el-input>
       </el-form-item>
-      <el-form-item :label="$t('table.picture')" prop='uploadImage'>
+      <el-form-item :label="$t('table.picture')" prop='img_url'>
         <el-upload
           class="avatar-uploader"
           name="imageData"
@@ -164,7 +164,7 @@
         imgUrl: '',
         // 通过prop设置必填字段
         rules: {
-          uploadImage:[{required: true, message: this.$t('message.valueRequired'),trigger: 'change'}]
+          img_url:[{required: true, message: this.$t('message.valueRequired'),trigger: 'change'}]
           // stitle: [{ required: true, message: this.$t('message.valueRequired'), trigger: 'change' }],
           // description: [
           //   { required: true, message: this.$t('message.valueRequired'), trigger: 'change' }
