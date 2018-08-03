@@ -23,7 +23,8 @@ export default {
     roleManage: 'peran menekel',
     systemConfig: 'konfigurasi sistem',
     appManage: 'aplikasi manage',
-    appConfig: 'konfigurasi properti aplikasi'
+    appConfig: 'konfigurasi properti aplikasi',
+    topicModule: 'manajemen topik'
   },
   message: {
     switchLangSucc: 'Pengalihan bahasa berhasil',
@@ -33,6 +34,8 @@ export default {
     changeStatusSucc: 'Operasi berhasil',
     createSucc: 'Simpan informasi dengan sukses',
     updateSucc: 'update selesai',
+    deletedSucc: 'Berhasil dihapus!',
+    undelete:'Batalkan penghapusan',
     succ: 'keberhasilan',
     fail: 'kegagalan',
     warn: 'peringatan',
@@ -56,7 +59,8 @@ export default {
     fetchListFail: 'Gagal mendapatkan daftar, silakan coba lagi',
     updateInfoFail: 'Gagal menyimpan informasi. Silakan coba lagi',
     getInfoFail: 'Gagal mendapatkan informasi. Silakan coba lagi',
-    keyWordsRequired: 'Panjang kunci tidak boleh kurang dari 1'
+    keyWordsRequired: 'Panjang kunci tidak boleh kurang dari 1',
+    deleteData: 'Tindakan ini akan menghapus data secara permanen. Anda ingin melanjutkan?'
   },
   button: {
     add: 'menambahkan',
@@ -143,7 +147,10 @@ export default {
     newsStatus2: 'dihapus',
     newsStatus4: 'dibubarkan',
     newsStatus8: 'diterbitkan',
-    newsIsLargePic: 'gambar besar'
+    newsIsLargePic: 'gambar besar',
+    versionNum: 'Nomor versi',
+    icon: 'Ikon',
+    backpicture: 'Gambar latar belakang',
   }
 }
 

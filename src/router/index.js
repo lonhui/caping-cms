@@ -196,7 +196,6 @@ export const asyncRouterMap = [
    *    系统配置
    *    应用管理
    *    应用属性配置
-   *    上传图片
    */
   {
     path: '/setting',
@@ -228,6 +227,12 @@ export const asyncRouterMap = [
         name: 'appManage',
         component: () => import('@/views/setting/app'),
         meta: { title: 'appManage', id: 5 }
+      },
+      {
+        path: 'topicModule',
+        name: 'topicModule',
+        component: () => import('@/views/setting/topicModule'),
+        meta: { title: 'topicModule', id: 6 }
       },
       {
         hidden: true,

@@ -23,7 +23,8 @@ export default {
     roleManage: '角色管理',
     systemConfig: '系统配置',
     appManage: '应用管理',
-    appConfig: '应用属性配置'
+    appConfig: '应用属性配置',
+    topicModule: '话题管理'
   },
   message: {
     switchLangSucc: '语言切换成功',
@@ -33,6 +34,8 @@ export default {
     changeStatusSucc: '操作成功',
     createSucc: '保存信息成功',
     updateSucc: '更新成功',
+    deletedSucc: '删除成功!',
+    undelete: '已取消删除',
     succ: '成功',
     fail: '失败',
     warn: '警告',
@@ -56,7 +59,8 @@ export default {
     fetchListFail: '获取列表失败，请重试',
     updateInfoFail: '保存信息失败，请重试',
     getInfoFail: '获取信息失败，请重试',
-    keyWordsRequired: '关键字长度不能小于1'
+    keyWordsRequired: '关键字长度不能小于1',
+    deleteData: '此操作将永久删除该数据, 是否继续?'
   },
   button: {
     add: '新增',
@@ -143,6 +147,9 @@ export default {
     newsStatus2: '已删除',
     newsStatus4: '已驳回',
     newsStatus8: '已发布',
-    newsIsLargePic: '是否大图'
+    newsIsLargePic: '是否大图',
+    versionNum: '版本号',
+    icon: '图标',
+    backpicture: '背景图片',
   }
 }

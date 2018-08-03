@@ -23,7 +23,8 @@ export default {
     roleManage: 'Role Manage',
     systemConfig: 'System Config',
     appManage: 'App Manage',
-    appConfig: 'App prop config'
+    appConfig: 'App prop config',
+    topicModule: 'Topic management'
   },
   message: {
     switchLangSucc: 'Language switching successful',
@@ -33,6 +34,8 @@ export default {
     changeStatusSucc: 'Successful operation',
     createSucc: 'Save information successfully',
     updateSucc: 'update completed',
+    deletedSucc: 'successfully deleted!',
+    undelete: 'Undelete',
     succ: 'success',
     fail: 'failure',
     warn: 'caveat',
@@ -56,7 +59,8 @@ export default {
     fetchListFail: 'Failed to get list, please try again',
     updateInfoFail: 'Failed to save the information. Please try again',
     getInfoFail: 'Failed to get information. Please try again',
-    keyWordsRequired: 'Key length cannot be less than 1'
+    keyWordsRequired: 'Key length cannot be less than 1',
+    deleteData: 'This action will permanently delete the data. Do you want to continue?'
   },
   button: {
     add: 'add',
@@ -143,7 +147,10 @@ export default {
     newsStatus2: 'deleted',
     newsStatus4: 'dismissed',
     newsStatus8: 'published',
-    newsIsLargePic: 'big picture'
+    newsIsLargePic: 'big picture',
+    versionNum: 'version number',
+    icon: 'icon',
+    backpicture: 'background picture',
   }
 }
 
