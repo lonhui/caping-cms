@@ -76,7 +76,21 @@ export default {
     disable: 'offline',
     latestWeek: 'latestWeek',
     latestMonth: 'latestMonth',
-    latest3Months: 'latest3Months'
+    latest3Months: 'latest3Months',
+
+    General: 'General DeepLink',
+    Specialtopic: 'Special topic',
+    Makecomplaints: 'Make complaints',
+    Pointsdetails: 'Points details page',
+    Checkin: 'Check in page',
+    Entercode: 'Enter invitation code',
+    Productlist: 'Product list',
+    Collection: 'Collection	',
+    Setinterface: 'Set interface',
+    Notificationinterface: 'Notification interface',
+    Helpinterface: 'Help interface',
+    JumpwebView: 'Jump webView',
+    Addparentmodule: 'Add parent module'
   },
   table: {
     id: 'No.',

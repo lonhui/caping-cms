@@ -76,7 +76,21 @@ export default {
     disable: 'offline',
     latestWeek: 'Satu minggu terakhir',
     latestMonth: 'Satu bulan terakhir',
-    latest3Months: 'Tiga bulan terakhir'
+    latest3Months: 'Tiga bulan terakhir',
+
+    General: 'General DeepLink',
+    Specialtopic: 'Topik khusus',
+    Makecomplaints: 'Tucao',
+    Pointsdetails: 'Halaman perincian poin',
+    Checkin: 'Periksa di halaman',
+    Entercode: 'Masukkan kode undangan',
+    Productlist: 'Daftar produk',
+    Collection: 'Koleksi',
+    Setinterface: 'Pengaturan antarmuka',
+    Notificationinterface: 'Antarmuka notifikasi',
+    Helpinterface: 'Antarmuka bantuan',
+    JumpwebView: 'Lompat webView',
+    Addparentmodule: 'Tambahkan modul induk'
   },
   table: {
     id: 'Tidak.',
