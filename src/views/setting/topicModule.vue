@@ -1,16 +1,12 @@
 <template>
     <div class="custom-tree-container">
-      <div class="button" v-show="show">
-          <el-button type="primary" plain @click="addFu">{{$t('button.Addparentmodule')}}</el-button>
-        </div>
       <div class="block" v-show="show">
-        
           <el-tree
           :data="data"
           node-key="ChannelId"
           :props="defaultProps"
-          :expand-on-click-node="false"
-          v-loading="loading">
+          default-expand-all
+          :expand-on-click-node="false">
           <span class="custom-tree-node" slot-scope="{ node, data }">
               <span>{{ node.label}}</span>
               <span>
@@ -91,17 +87,13 @@
                     element-loading-text="Loading"></i>
                 </el-upload>
             </el-form-item>
-          </div><br>
-            <el-form-item :label="$t('table.versionNum')">
-              <el-input v-model="form.MinVersion" style="width: 200px"></el-input>
-            </el-form-item>
+          </div>
+          <br>
+          <el-form-item :label="$t('table.versionNum')">
+            <el-input v-model="form.MinVersion" style="width: 200px"></el-input>
+          </el-form-item>
           <el-form-item label="DeepLink">
-            <!-- <el-input v-model="form.DeepLink" style="width: 400px"></el-input> -->
-            <el-cascader :options="options"  v-model="selectedOptions" :clearable='true' class="urlOrid" style="width: 380px"></el-cascader>
-            <el-form-item :label='urlOrid' v-show="urlShow" class="urlOrid">
-              <el-input v-model="url" style="width: 300px"></el-input>
-            </el-form-item>
-            <el-input v-model="form.DeepLink" :disabled="true" click="deeplink"></el-input>
+            <el-input v-model="form.DeepLink" style="width: 400px"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button @click="console()">{{$t('button.cancel')}}</el-button>
@@ -119,76 +111,6 @@ let id = 1000;
     data() {
       const data = [];
       return {
-        options: [{
-          value: '1',
-          label: this.$t('button.General'),
-          children: [{
-              value: '1024',
-              label: this.$t('button.Specialtopic')
-            }, {
-              value: '2048',
-              label: this.$t('button.Makecomplaints')
-            }, {
-              value: '3001',
-              label: this.$t('button.Pointsdetails')
-            }, {
-              value: '3002',
-              label: this.$t('button.Checkin')
-            },{
-              value: '3003',
-              label: this.$t('button.Entercode')
-            },{
-              value: '3004',
-              label: this.$t('button.Productlist')
-            },{
-              value: '3005',
-              label: this.$t('button.Collection')
-            },{
-              value: '3006',
-              label: this.$t('button.Setinterface')
-            },{
-              value: '3007',
-              label: this.$t('button.Notificationinterface')
-            },{
-              value: '3008',
-              label: this.$t('button.Helpinterface')
-            }]
-        },{
-          value: '2',
-          label: this.$t('button.JumpwebView'),
-          children: [{
-              value: '1024',
-              label: this.$t('button.Specialtopic')
-            }, {
-              value: '2048',
-              label: this.$t('button.Makecomplaints')
-            }, {
-              value: '3001',
-              label: this.$t('button.Pointsdetails')
-            }, {
-              value: '3002',
-              label: this.$t('button.Checkin')
-            },{
-              value: '3003',
-              label: this.$t('button.Entercode')
-            },{
-              value: '3004',
-              label: this.$t('button.Productlist')
-            },{
-              value: '3005',
-              label: this.$t('button.Collection')
-            },{
-              value: '3006',
-              label: this.$t('button.Setinterface')
-            },{
-              value: '3007',
-              label: this.$t('button.Notificationinterface')
-            },{
-              value: '3008',
-              label: this.$t('button.Helpinterface')
-            }]
-        }], 
-        selectedOptions: [],
         data: JSON.parse(JSON.stringify(data)),
         defaultProps: {
           children: 'ChildChannel',
@@ -208,7 +130,6 @@ let id = 1000;
          type_BackImgUrl:{
           imageType:8
         },
-        loading:false,
         // 页面显示的图片
         updata:false,
         ImageUrl:'',
@@ -217,9 +138,6 @@ let id = 1000;
         iconUploading:false,//上传时加载标
         BackImgUrlloading:false,
         ImageUrlloading:false,
-        urlShow:false,
-        urlOrid:'',
-        url:null,
         // 必填项
         rules: {
           
@@ -233,35 +151,14 @@ let id = 1000;
     methods: {
       // 获取模块数据
       getData(){
-        this.loading = true
         this.$axios.get('/channel/cms/list')
         .then ((res)=>{
           console.log(res)
           this.data = res.data.data
-          this.loading = false
         })
-        .catch((error)=>{
-          this.loading = false
+        .catch(function(error){
           console.log(error)
         })
-      },
-      // 添加父模块
-      addFu(){
-        this.form = {
-          ParentId:0,
-          ChannelName: '',
-          OnlineState: true,
-          ImageUrl:'', 
-          Icon: '',
-          BackImgUrl: '',
-          DeepLink: '',
-          MinVersion:'',
-          appId:1
-        }
-        this.selectedOptions = []
-        this.urlShow = false
-        this.url = null
-        this.show = false
       },
       // 添加
       openAppend(data) {
@@ -274,10 +171,7 @@ let id = 1000;
           BackImgUrl: '',
           DeepLink: '',
           MinVersion:''
-        }
-        this.selectedOptions = []
-        this.urlShow = false
-        this.url = null
+        },
         this.show = false
       },
       console(){
@@ -318,9 +212,6 @@ let id = 1000;
       },
       //编辑
       openEdit(data){
-        this.selectedOptions = []
-        this.urlShow = false
-        this.url = null
         this.show = false
         this.form = {
           ChannelId: data.ChannelId,
@@ -405,31 +296,6 @@ let id = 1000;
           });
         });
       }
-  },
-  watch:{
-    'url':function(){
-      if(this.selectedOptions[0]==1){
-          this.form.DeepLink = 'capingnews://m.caping.com?type='+this.selectedOptions[1]+'&id='+this.url
-        }else if(this.selectedOptions[0]==2){
-          this.form.DeepLink = 'capingnews://m.caping.com?type='+this.selectedOptions[1]+'&url='+this.url
-        }
-        
-    },
-    'selectedOptions':function(){
-        if(this.selectedOptions[0]==1){
-          this.urlOrid = 'ID'
-          this.url = 0
-          this.urlShow =true
-        }else if(this.selectedOptions[0]==2){
-          this.urlOrid = 'Url'
-          this.url = ''
-          this.urlShow =true
-        }else{
-          this.urlShow = false
-          this.url = null
-          this.form.DeepLink = null
-        }
-    }
   }
 }
 </script>
@@ -473,19 +339,5 @@ let id = 1000;
 }
 .up{
   height: 120px;
-}
-.urlOrid{
-  float: left
-}
-.deeplink{
-  padding-top: 20px 
-}
-.button{
-  width: 60%;
-  height: 40px;
-  margin: 20px auto 0;
-}
-.button button{
-  float: right;
 }
 </style>

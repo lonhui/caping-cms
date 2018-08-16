@@ -76,22 +76,7 @@ export default {
     disable: '下线',
     latestWeek: '最近一周',
     latestMonth: '最近一个月',
-    latest3Months: '最近三个月',
-
-    General: '一般DeepLink',
-    Specialtopic: '专题',
-    Makecomplaints: '吐槽',
-    Pointsdetails: '积分详情页面',
-    Checkin: '签到页面',
-    Entercode: '输入邀请码',
-    Productlist: '商品列表',
-    Collection: '收藏',
-    Setinterface: '设置界面',
-    Notificationinterface: '通知界面',
-    Helpinterface: '帮助界面',
-    JumpwebView: '跳转webView',
-    Addparentmodule: '添加父模块'
-
+    latest3Months: '最近三个月'
   },
   table: {
     id: '序号',
