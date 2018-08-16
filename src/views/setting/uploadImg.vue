@@ -14,7 +14,6 @@
                 <p>{{imgUrl}}</p>
             </el-dialog>
         </div>
-        
         <div>
             <el-upload
                 action="https://ai.caping.co.id/Start/uploadpic"
