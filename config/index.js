@@ -15,39 +15,39 @@ module.exports = {
         //http://127.0.0.1:3446
         //http://cms.caping.co.id
         //http://196.168.1.186:3446
-        target: '/http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/app': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/config': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/sys': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/getVerityCode': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/news': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/channel': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/statistic': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/table': {
-        target: 'http://127.0.0.1:3446',
+        target: 'http://cms.caping.co.id',
         changeOrigin: true
       },
       '/Start': {

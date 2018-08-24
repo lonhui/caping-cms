@@ -248,6 +248,8 @@ export default {
     },
     // 更新配置
     updateData() {
+      // 更改启动页图片，上传无效时可使用
+      // this.temp.config_value='https://image1.caping.co.id/resources/20180823/7d/1307019426A720A1280.jpg'
       this.$refs['dataForm'].validate(async valid => {
         if (valid && JSON.stringify(this.temp) !== JSON.stringify(this.bakTemp)) {
           try {

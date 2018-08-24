@@ -77,7 +77,6 @@ export default {
         this.dialogVisible = true;
       }
     }
-
 }
 </script>
 
