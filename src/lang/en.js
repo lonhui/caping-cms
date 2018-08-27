@@ -76,7 +76,10 @@ export default {
     disable: 'offline',
     latestWeek: 'latestWeek',
     latestMonth: 'latestMonth',
-    latest3Months: 'latest3Months'
+    latest3Months: 'latest3Months',
+    AddParentModule:'Add parent module',
+    enterId:'Please enter id',
+    enterUrl:'Please enter url',
   },
   table: {
     id: 'No.',
@@ -151,6 +154,28 @@ export default {
     versionNum: 'version number',
     icon: 'icon',
     backpicture: 'background picture',
+    generalDeepLink:'General DeepLink',
+    news:'News',
+    post:'Post',
+    paragraph:'Paragraph',
+    photoNews:'Photo News',
+    Imagead:'Image ad',
+    circleOfFriends:'Circle of friends',
+    TopComments:'Top Comments',
+    activity:'activity',
+    user:'user',
+    Video:'Video',
+    Specialtopic:'Special topic',
+    Makecomplaints:'Make complaints',
+    Pointsdetails:'Points details page',
+    Checkinpage:'Check in page',
+    Enterinvitationcode	:'Enter invitation code	',
+    Productlist:'Product list',
+    Collection:'Collection',
+    Setinterface:'Set interface',
+    Notificationinterface:'Notification interface',
+    Helpinterface:'Help interface',
+    JumpwebView:'Jump webView'
   }
 }
 

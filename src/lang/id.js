@@ -76,7 +76,10 @@ export default {
     disable: 'offline',
     latestWeek: 'Satu minggu terakhir',
     latestMonth: 'Satu bulan terakhir',
-    latest3Months: 'Tiga bulan terakhir'
+    latest3Months: 'Tiga bulan terakhir',
+    AddParentModule:'Tambahkan modul induk',
+    enterId:'Harap masukkan id',
+    enterUrl:'Silakan masukkan url',
   },
   table: {
     id: 'Tidak.',
@@ -151,6 +154,28 @@ export default {
     versionNum: 'Nomor versi',
     icon: 'Ikon',
     backpicture: 'Gambar latar belakang',
+    generalDeepLink:'General DeepLink',
+    news:'Berita',
+    post:'Posting',
+    paragraph:'Paragraf',
+    photoNews:'Berita bergambar',
+    Imagead:'Iklan gambar',
+    circleOfFriends:'Lingkaran teman',
+    TopComments:'Komentar teratas',
+    activity:'Aktivitas',
+    user:'Pengguna',
+    Video:'Video',
+    Specialtopic:'Topik khusus',
+    Makecomplaints:'Tucao',
+    Pointsdetails:'Halaman perincian poin',
+    Checkinpage:'Periksa di halaman',
+    Enterinvitationcode	:'Masukkan kode undangan',
+    Productlist:'Daftar produk',
+    Collection:'Koleksi',
+    Setinterface:'Pengaturan antarmuka',
+    Notificationinterface:'Antarmuka notifikasi',
+    Helpinterface:'Antarmuka bantuan',
+    JumpwebView:'Lompat webView'
   }
 }
 

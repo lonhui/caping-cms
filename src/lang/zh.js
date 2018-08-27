@@ -76,7 +76,11 @@ export default {
     disable: '下线',
     latestWeek: '最近一周',
     latestMonth: '最近一个月',
-    latest3Months: '最近三个月'
+    latest3Months: '最近三个月',
+    AddParentModule:'添加父模块',
+    enterId:'请输入id',
+    enterUrl:'请输入url',
+
   },
   table: {
     id: '序号',
@@ -151,5 +155,30 @@ export default {
     versionNum: '版本号',
     icon: '图标',
     backpicture: '背景图片',
+    generalDeepLink:'一般深链',
+    news:'新闻',
+    post:'帖子',
+    paragraph:'段子',
+    photoNews:'图片新闻',
+    Imagead:'图片广告',
+    circleOfFriends:'朋友圈',
+    TopComments:'热门评论',
+    activity:'活动',
+    user:'用户',
+    Video:'视频',
+    Specialtopic:'专题',
+    Makecomplaints:'吐槽',
+    Pointsdetails:'积分详情页面',
+    Checkinpage:'签到页面',
+    Enterinvitationcode	:'输入邀请码',
+    Productlist:'商品列表',
+    Collection:'收藏',
+    Setinterface:'设置界面',
+    Notificationinterface:'通知界面',
+    Helpinterface:'帮助界面',
+    JumpwebView:'跳转webView'
+
+
+
   }
 }
